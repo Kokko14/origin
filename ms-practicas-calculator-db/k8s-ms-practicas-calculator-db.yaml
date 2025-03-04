@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-practicas-calculator-db-deployment
+  namespace: ms-middleware
+  labels:
+    event: ms-practicas-calculator-db
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      event: ms-practicas-calculator-db
+  template:
+    metadata:
+      labels:
+        event: ms-practicas-calculator-db
+    spec:
+      containers:
+        - 
+          image: 10.112.230.33:443/telefonica/g-microservicios/ms-practicas-calculator-db:1.0.0-qa
+          name: ms-practicas-calculator-db
+          imagePullPolicy: Always
+          env:
+          - name: TZ
+            value: America/Bogota
+          - name: JAVA_OPTS
+            value: '-Dlog4j2.formatMsgNoLookups=true'
+          resources:
+            limits:
+              memory: 1024Mi
+            requests:
+              memory: 128Mi
+              cpu: 50m
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/ms/ms-practicas-calculator-db/application.properties
+              subPath: application.properties      
+            - name: ms-logs-volume
+              mountPath: /opt/ms/ms-practicas-calculator-db/logs
+            - name: config-volume-log
+              mountPath: /opt/ms/ms-practicas-calculator-db/log4j2.xml
+              subPath: log4j2.xml
+      volumes:
+        - name: ms-logs-volume
+          hostPath:
+            path: /datos/logs/ms/ms-practicas-calculator-db
+        - name: config-volume
+          configMap:
+            name: ms-practicas-calculator-db-configmap
+        - name: config-volume-log
+          configMap:
+            name: ms-practicas-calculator-db-configmap-log
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-practicas-calculator-db-service
+  namespace: ms-middleware
+  labels:
+    event: ms-practicas-calculator-db
+spec:
+  ports:
+    -
+      port: 8080
+      targetPort: 8080
+  selector:
+    event: ms-practicas-calculator-db
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ms-practicas-calculator-db-hpa
+  namespace: ms-middleware
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ms-practicas-calculator-db-deployment
+  minReplicas: 1
+  maxReplicas: 1
+  metrics:
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 70
+

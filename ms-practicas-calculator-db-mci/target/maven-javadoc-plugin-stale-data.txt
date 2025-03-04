@@ -1,0 +1,45 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'C:/Users/damrueda/.m2/repository/org/projectlombok/lombok/1.18.10/lombok-1.18.10.jar;C:/Users/damrueda/.m2/repository/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar;C:/Users/damrueda/.m2/repository/org/jetbrains/annotations-java5/24.1.0/annotations-java5-24.1.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/damrueda/Desktop/APL-MScalculator/ms-practicas-calculator-db-mci/src/main/java;C:/Users/damrueda/Desktop/APL-MScalculator/ms-practicas-calculator-db-mci/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/damrueda/Desktop/APL-MScalculator/ms-practicas-calculator-db-mci/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ms-practicas-calculator-db-mci 1.0.0 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/damrueda/Desktop/APL-MScalculator/ms-practicas-calculator-db-mci/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'ms-practicas-calculator-db-mci 1.0.0 API'
+ec.otecel.calculatordbservice.mci
+C:\Users\damrueda\.m2\repository\org\projectlombok\lombok\1.18.10\lombok-1.18.10.jar = 1739951153819
+C:\Users\damrueda\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar = 1739948805257
+C:\Users\damrueda\.m2\repository\org\jetbrains\annotations-java5\24.1.0\annotations-java5-24.1.0.jar = 1741042487453
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\src\main\java = 1741039819751
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\generated-sources\annotations = 1741043489477
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\allclasses-frame.html = 1741043498908
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\allclasses-noframe.html = 1741043498919
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\constant-values.html = 1741043498806
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\deprecated-list.html = 1741043498897
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\help-doc.html = 1741043498943
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\index-all.html = 1741043498885
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\index.html = 1741043498931
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\overview-tree.html = 1741043498871
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\package-list = 1741043498755
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\script.js = 1741043498966
+C:\Users\damrueda\Desktop\APL-MScalculator\ms-practicas-calculator-db-mci\target\reports\apidocs\stylesheet.css = 1741043498957

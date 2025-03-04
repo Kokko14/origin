@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+	<Properties>
+		<Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+		<Property name="LOG_LEVEL_PATTERN">%5p</Property>
+		<Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+		<Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATEFORMAT_PATTERN}}{GMT-5}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{%pid}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+		<Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} %pid --- [%t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+		<Property name="APP_LOG_ROOT">/opt/ms/${bundle:application:spring.application.name}/logs</Property>
+	</Properties >
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+		</Console>
+		
+		<RollingFile name="spring-boot"
+			fileName="${sys:APP_LOG_ROOT}/spring-boot.log"
+			filePattern="${sys:APP_LOG_ROOT}/spring-boot-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+		<RollingFile name="execLog"
+			fileName="${sys:APP_LOG_ROOT}/LogExec.log"
+			filePattern="${sys:APP_LOG_ROOT}/LogExec-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout pattern="%highlight{%d{dd/MMM/yyyy HH:mm:ss,SSS}{GMT-5}\t%X{pipeLineName}\t%X{subSystem}\t%X{operationName}\t%X{layer}\t%X{resultCode}\t%X{totalRuntime}\t%X{backendRuntime}\t%X{executionId}\t%X{flowId}\t%X{pid}\t${sys:hostName}\t%X{originSystem}\t%X{targetSystem}\t%X{originIp}\t%X{targetServiceEndpoint}\t%X{errorReturnCode}\t%X{normalizedErrorDescription}%n}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+		<RollingFile name="appLog"
+			fileName="${sys:APP_LOG_ROOT}/LogApp.log"
+			filePattern="${sys:APP_LOG_ROOT}/LogApp-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout charset="UTF-8"
+			pattern="%d{dd/MMM/yyyy HH:mm:ss,SSS}{GMT-5}   %-5level %X{serviceName}: &#60;ns1:contentElement xmlns:ns1=&quot;http://telefonica.com/globalIntegration/OSB/common/applogger/v1&quot; xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot;&#62;&#60;ns1:flowID&#62;%X{flowId}&#60;/ns1:flowID&#62;&#60;ns1:execID&#62;%X{execId}&#60;/ns1:execID&#62;&#60;ns1:messageID&#62;%X{messageId}&#60;/ns1:messageID&#62;&#60;ns1:summary&#62;%X{summary}&#60;/ns1:summary&#62;&#60;ns1:content&#62;%X{content}&#60;/ns1:content&#62;&#60;/ns1:contentElement&#62; %n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+
+
+	</Appenders>
+
+	<Loggers>
+
+		<Logger name="TME_MI_EXEC" additivity="false" level="info">
+			<AppenderRef ref="execLog" />
+		</Logger>
+
+		<Logger name="TME_MI_APP" additivity="false" level="info">
+			<AppenderRef ref="appLog" />
+		</Logger>
+
+		<Root level="INFO">
+			<AppenderRef ref="spring-boot" />
+			<AppenderRef ref="console" />
+		</Root>
+
+	</Loggers>
+
+</Configuration>
